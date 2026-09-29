@@ -165,27 +165,6 @@ The Rex project follows a structured, five-phase research pipeline that progress
 
 ---
 
-### Future Work
-
-**Phase IV — Cross-Simulator Transfer & Validation (Q4 2026)**
-
-The objective of this phase is to establish simulator-agnostic policy robustness through systematic cross-physics validation, without reliance on physical hardware.
-
-- **Multi-Physics Policy Export:** Convert converged Isaac Lab policies to ONNX for framework-agnostic inference. Validate deterministic action equivalence across PyTorch, ONNX Runtime, and TensorRT execution providers.
-- **Cross-Simulator Benchmarking:** Deploy identical policy checkpoints in PyBullet and MuJoCo using URDF representations matched to the Isaac Lab articulation. Quantify performance degradation across contact solvers (TGS vs. LCP), timestep resolutions, and friction models.
-- **Sim-to-Sim Gap Analysis:** Identify physics-engine-specific failure modes (e.g., foot-scuffing in rigid-contact simulators vs. soft-contact penetration in Isaac Lab). Use these discrepancies to guide targeted domain randomization—effectively treating simulator identity as an unobserved domain variable.
-- **Simulator-Agnostic Domain Randomization:** Expand randomization to include physics-parameter distributions that bracket cross-simulator variation (contact stiffness, solver iterations, joint damping). Goal: a single policy checkpoint that survives transfer across Isaac Lab, PyBullet without retraining.
-
-**Phase V — Autonomous Behaviors in Simulation (2027)**
-
-This phase advances beyond velocity tracking toward closed-loop, perception-driven locomotion entirely within high-fidelity simulation environments.
-
-- **Exteroceptive Terrain Perception:** Integrate simulated depth-camera or LiDAR point-cloud observations into the policy observation space. Train proactive foot-placement strategies for discrete terrain features (stairs, gaps, irregular stepping stones) using elevation maps rendered from simulated sensor streams.
-- **Multi-Gait Latent Spaces:** Extend the command space to include gait-mode switching (trot, pace, bound) via a latent-variable policy architecture or mixture-of-experts routing. Evaluate gait transition stability under rough-terrain perturbations.
-- **Sim-to-Sim Generalization:** Stress-test the full perception-locomotion stack under adversarial simulator configurations—varying physics backends, sensor noise models, and rendering engines—to establish upper bounds on sim-to-sim transfer fidelity as a proxy for real-world deployability.
-
----
-
 ## ⚠️ Disclaimer
 
 This repository is intended for simulation-based robotics research. Trained policies and control code may produce unexpected or dynamically unstable behavior when transferred to physical hardware. Use at your own risk — validate thoroughly in simulation first, and exercise appropriate safety measures (emergency stop, physical clearance, supervised operation, protective equipment) before any physical deployment. The author(s) assume no liability for damage, injury, or loss resulting from use of this code or any hardware built to match it.
